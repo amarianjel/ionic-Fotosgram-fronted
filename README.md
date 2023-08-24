@@ -40,3 +40,36 @@
 </table>
 
 ![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
+
+### Migraciones
+
+Swiper
+```npm install swiper@latest```
+Next, we need to add the CUSTOM_ELEMENTS_SCHEMA, which tells Angular that we will be using custom elements. This can be done in either app.module.ts, or the module file for the component where you will be using Swiper.
+
+
+```ts
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+@NgModule({
+  schemas: [..., CUSTOM_ELEMENTS_SCHEMA]
+});
+```
+Finally, we need to call Swiper's register function to globally register Swiper's custom elements. This should only be done once, so place it in app.component.ts.
+```ts
+import { register } from 'swiper/element/bundle';
+
+register();
+
+@Component({
+  ...
+})
+```
+From there, we just have to replace ion-slides elements with swiper-container and ion-slide elements with swiper-slide. Note that these custom elements do not need to be imported, as calling register tells Angular about them on its own.
+```html
+<swiper-container>
+  <swiper-slide>Slide 1</swiper-slide>
+  <swiper-slide>Slide 2</swiper-slide>
+  <swiper-slide>Slide 3</swiper-slide>
+</swiper-container>
+```
