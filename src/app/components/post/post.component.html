@@ -14,35 +14,29 @@
 
 
   <!-- ngIf imgs.... -->
-<!-- BUG Problema Get con el ngIF -->
-  <swiper-container pager="true" *ngIf="post.imgs!.length > 1">
-    <swiper-slide>Slide 1</swiper-slide>
-    <swiper-slide>Slide 2</swiper-slide>
+  <!-- BUG Problema Get con el ngIF -->
+  <!-- <swiper-container pager="true" *ngIf="post.imgs!.length > 1">
+    <swiper-slide *ngFor="let img of post.imgs"
+                  class="image-slide"
+                  [style]=" (img | imagen: post.usuario?._id )"></swiper-slide>
+    <swiper-slide *ngIf="post.imgs!.length === 1" [options]="slideSoloOpts"></swiper-slide>
     <swiper-slide>Slide 3</swiper-slide>
+  </swiper-container> -->
+
+  <swiper-container pager="true" *ngIf="post.imgs!.length > 1">
+    <swiper-slide class="image-slide"
+                  [style]="img1 | domSanitizer"></swiper-slide>
+    <swiper-slide class="image-slide"
+                  [style]="img2 | domSanitizer"></swiper-slide>
+    <swiper-slide class="image-slide"
+                  [style]="img3 | domSanitizer"></swiper-slide>
   </swiper-container>
-  <!-- <ion-slides pager="true" *ngIf="post.imgs.length > 1">
-
-    <ion-slide *ngFor="let img of post.imgs"
-                class="image-slide"
-                [style]=" (img | imagen: post.usuario._id ) | domSanitizer ">
-    </ion-slide>
-
-  </ion-slides>
-
-  <ion-slides *ngIf="post.imgs.length === 1" [options]="slideSoloOpts">
-
-    <ion-slide class="image-slide"
-                [style]=" (post.imgs[0] | imagen: post.usuario._id ) | domSanitizer ">
-    </ion-slide>
-
-  </ion-slides> -->
-
 
   <!-- mapa -->
   <!-- <app-mapa [coords]="post.coords" *ngIf="post.coords"></app-mapa> -->
 
   <ion-item lines="none">
-    <ion-icon slot="start" name="heart-empty"></ion-icon>
+    <ion-icon slot="start" name="heart-outline"></ion-icon>
     <ion-icon slot="end" name="bookmark"></ion-icon>
   </ion-item>
 

@@ -5,6 +5,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { PostsComponent } from './posts/posts.component';
 import { PostComponent } from './post/post.component'
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -17,7 +18,8 @@ import { PostComponent } from './post/post.component'
   ],
   imports: [
     CommonModule,
-    IonicModule
+    IonicModule,
+    PipesModule
   ]
 })
 export class ComponentsModule { }
