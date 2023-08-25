@@ -22,8 +22,8 @@
     <swiper-slide *ngIf="post.imgs!.length === 1" [options]="slideSoloOpts"></swiper-slide>
     <swiper-slide>Slide 3</swiper-slide>
   </swiper-container> -->
-
-  <swiper-container pager="true" *ngIf="post.imgs!.length > 1">
+  <!-- pager="true" *ngIf="post.imgs!.length > 1" -->
+  <swiper-container >
     <swiper-slide class="image-slide"
                   [style]="img1 | domSanitizer"></swiper-slide>
     <swiper-slide class="image-slide"
@@ -44,6 +44,7 @@
     <ion-label text-wrap>
         {{ post.mensaje }}
     </ion-label>
+    
   </ion-item>
 
 </div>
