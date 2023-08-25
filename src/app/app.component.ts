@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Platform } from '@ionic/angular';
 import { register } from 'swiper/element/bundle';
 
 register();
@@ -9,5 +10,11 @@ register();
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  
+  constructor(public platform: Platform) {
+    platform.ready().then(() => {
+      console.log('Width: ' + platform.width());
+      console.log('Height: ' + platform.height());
+    });
+  }
 }

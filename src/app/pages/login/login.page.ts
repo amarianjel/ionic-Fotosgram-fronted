@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import Swiper from 'swiper';
 
 @Component({
   selector: 'app-login',
@@ -7,6 +8,8 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+
+  @ViewChild('slidePrincipal') slides: Swiper | ElementRef | any;
 
   avatars = [
     {
@@ -43,9 +46,19 @@ export class LoginPage implements OnInit {
     },
   ];
 
-  constructor() { }
+  constructor() {
+
+  }
 
   ngOnInit() {
+  }
+
+  ionViewDidEnter() {
+    this.slides.nativeElement.swiper.allowTouchMove
+    console.log(this.slides.nativeElement.swiper.allowTouchMove)
+    console.log(this.slides.nativeElement.swiper.activeIndex)
+    console.log(this.slides.nativeElement.swiper.allowSlideNext)
+
   }
 
   login( flogin: NgForm ){
