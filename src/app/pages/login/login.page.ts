@@ -21,7 +21,7 @@ export class LoginPage{
   };
 
   registerUser: Usuario = {
-    email: 'test',
+    email: 'test@gmail.com',
     password: '123456',
     nombre: 'Test',
     avatar: 'av-1.png'
@@ -83,8 +83,19 @@ export class LoginPage{
     }
   }
 
-  registro( fRegistro: NgForm ){
-    console.log(fRegistro.valid)
+  async registro( fRegistro: NgForm ){
+    
+    if ( fRegistro.invalid ) { return; }
+
+    const valido = await this.usuarioService.registro( this.registerUser );
+
+    if ( valido ) {
+      // navegar al tabs
+      this.navCtrl.navigateRoot( '/main/tabs/tab1', { animated: true } );
+    } else {
+      // mostrar alerta de usuario y contraseña no correctos
+      this.uiService.alertaInformativa('Ese correo electrónico ya existe.');
+    }
   }
 
   seleccionarAvatar( avatar: { seleccionado: boolean; }){

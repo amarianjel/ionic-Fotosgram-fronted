@@ -14,7 +14,10 @@ export class UsuarioService {
   token: string | any;
   private usuario: Usuario = {};
 
-  constructor( private http: HttpClient, private storage: Storage ) { }
+  constructor( private http: HttpClient, private storage: Storage ) {
+    // README: Funcion que da problemas cuando inicia la app, pero se soluciono con un try catch del storage
+    this.storage.create();
+  }
 
   login( email: string, password: string ) {
 
@@ -38,14 +41,25 @@ export class UsuarioService {
   }
 
   async guardarToken( token: string ) {
-    // README: Funcion que da problemas cuando inicia la app, pero se soluciono con un try catch del storage
-    try{
-      await this.storage.create();
-      this.token = token;
-      await this.storage.set('token', token);
-      // return this.mensajes;
-    }catch( err ){
-      console.error('Error al cargar datos desde el almacenamiento:', err);
-    }
+    this.token = token;
+    await this.storage.set('token', token);
+  }
+
+  
+  registro( usuario: Usuario ) {
+    return new Promise( resolve => {
+      this.http.post(`${ URL }/user/create`, usuario ).subscribe( async( resp: any ) => {
+        console.log(resp);
+
+        if ( resp['ok'] ) {
+          await this.guardarToken( resp['token'] );
+          resolve(true);
+        } else {
+          this.token = null;
+          this.storage.clear();
+          resolve(false);
+        }
+      });
+    });
   }
 }
