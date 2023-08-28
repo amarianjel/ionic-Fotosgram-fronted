@@ -54,11 +54,7 @@ export class LoginPage implements OnInit {
   }
 
   ionViewDidEnter() {
-    this.slides.nativeElement.swiper.allowTouchMove
-    console.log(this.slides.nativeElement.swiper.allowTouchMove)
-    console.log(this.slides.nativeElement.swiper.activeIndex)
-    console.log(this.slides.nativeElement.swiper.allowSlideNext)
-
+    this.slides.nativeElement.swiper.allowTouchMove = false   // Bloquear deslizamiento
   }
 
   login( flogin: NgForm ){
@@ -72,6 +68,17 @@ export class LoginPage implements OnInit {
   seleccionarAvatar( avatar: { seleccionado: boolean; }){
     this.avatars.forEach( av => av.seleccionado = false );
     avatar.seleccionado = true;
+  }
+
+  //README: Lo dejare desbloqueado por que se ve mas bonito
+  mostrarRegistro() {
+    this.slides.nativeElement.swiper.allowTouchMove = true
+    this.slides.nativeElement.swiper.slideTo(0);
+  }
+
+  mostrarLogin() {
+    this.slides.nativeElement.swiper.allowTouchMove = true
+    this.slides.nativeElement.swiper.slideTo(1);
   }
 
 }
