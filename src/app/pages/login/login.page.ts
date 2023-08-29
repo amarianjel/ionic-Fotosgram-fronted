@@ -20,7 +20,7 @@ export class LoginPage{
     password: '123456'
   };
 
-  registerUser: any = {
+  registerUser: Usuario = {
     email: 'test@gmail.com',
     password: '123456',
     nombre: 'Test',
@@ -53,7 +53,7 @@ export class LoginPage{
     if ( fRegistro.invalid ) { return; }
 
     const valido = await this.usuarioService.registro( this.registerUser );
-
+    
     if ( valido ) {
       // navegar al tabs
       this.navCtrl.navigateRoot( '/main/tabs/tab1', { animated: true } );

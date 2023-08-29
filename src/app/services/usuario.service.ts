@@ -47,19 +47,24 @@ export class UsuarioService {
 
   
   registro( usuario: Usuario ) {
-    return new Promise( resolve => {
-      this.http.post(`${ URL }/user/create`, usuario ).subscribe( async( resp: any ) => {
-        console.log(resp);
 
-        if ( resp['ok'] ) {
-          await this.guardarToken( resp['token'] );
-          resolve(true);
-        } else {
-          this.token = null;
-          this.storage.clear();
-          resolve(false);
-        }
-      });
+    console.log(usuario)
+    return new Promise( resolve => {
+
+      console.log(resolve)
+      console.log(usuario)
+      // this.http.post(`${ URL }/user/create`, usuario ).subscribe( async( resp:any ) => {
+      //   console.log(resp);
+
+      //   if ( resp['ok'] ) {
+      //     await this.guardarToken( resp['token'] );
+      //     resolve(true);
+      //   } else {
+      //     this.token = null;
+      //     this.storage.clear();
+      //     resolve(false);
+      //   }
+      // });
     });
   }
 }

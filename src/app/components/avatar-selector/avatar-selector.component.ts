@@ -60,7 +60,7 @@ export class AvatarSelectorComponent  implements OnInit {
     }
   }
 
-  seleccionarAvatar( avatar:any ) {
+  seleccionarAvatar( avatar: { seleccionado: boolean; img: string | undefined; } ) {
 
     this.avatars.forEach( av => av.seleccionado = false  );
     avatar.seleccionado = true;
