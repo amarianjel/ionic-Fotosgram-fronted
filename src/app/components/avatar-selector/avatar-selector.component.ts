@@ -8,7 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class AvatarSelectorComponent  implements OnInit {
 
   @Output() avatarSel = new EventEmitter<string>();
-  @Input() avatarActual = 'av-1.png';
+  @Input() avatarActual: string | undefined = 'av-1.png';
 
   avatars = [
     {

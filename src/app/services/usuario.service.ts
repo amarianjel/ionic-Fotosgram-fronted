@@ -95,4 +95,38 @@ export class UsuarioService {
         });
     });
   }
+
+  getUsuario() {
+    if ( !this.usuario._id ) {
+      this.validaToken();
+    }
+    return { ...this.usuario };
+  }
+
+  actualizarUsuario( usuario: Usuario ) {
+
+    const headers = new HttpHeaders({
+      'x-token': this.token
+    });
+
+    return new Promise( resolve => {
+      this.http.post(`${ URL }/user/update`, usuario, { headers })
+        .subscribe(( resp: any ) => {
+
+          if ( resp['ok'] ) {
+            this.guardarToken( resp['token'] );
+            resolve(true);
+          } else {
+            resolve(false);
+          }
+        });
+    });
+  }
+
+  logout() {
+    this.token   = null;
+    this.usuario = {};
+    this.storage.clear();
+    this.navCtrl.navigateRoot('/login', { animated: true });
+  }
 }
