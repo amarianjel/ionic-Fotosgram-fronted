@@ -23,17 +23,19 @@
     <swiper-slide>Slide 3</swiper-slide>
   </swiper-container> -->
   <!-- pager="true" *ngIf="post.imgs!.length > 1" -->
-  <swiper-container >
+  
+  <!-- <swiper-container >
     <swiper-slide class="image-slide"
                   [style]="img1 | domSanitizer"></swiper-slide>
     <swiper-slide class="image-slide"
                   [style]="img2 | domSanitizer"></swiper-slide>
     <swiper-slide class="image-slide"
                   [style]="img3 | domSanitizer"></swiper-slide>
-  </swiper-container>
+  </swiper-container> -->
 
   <!-- mapa -->
-  <!-- <app-mapa [coords]="post.coords" *ngIf="post.coords"></app-mapa> -->
+  <app-mapa [coords]="post.coords" ></app-mapa>
+  <!-- *ngIf="post.coords" -->
 
   <ion-item lines="none">
     <ion-icon slot="start" name="heart-outline"></ion-icon>
