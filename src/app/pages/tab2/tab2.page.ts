@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { PostsService } from 'src/app/services/posts.service';
+import { Geolocation } from '@capacitor/geolocation';
 
 @Component({
   selector: 'app-tab2',
@@ -14,53 +15,48 @@ export class Tab2Page {
 
   post = {
     mensaje: '',
-    coords: null,
+    coords: '',
     posicion: false
   };
 
-  constructor( private postsService: PostsService,
-                private route: Router ) { }
+  constructor( private postsService: PostsService, private route: Router ) { }
 
   async crearPost() {
 
     console.log(this.post);
-    this.postsService.crearPost( this.post );
+    const creado = await this.postsService.crearPost( this.post );
 
-    // this.post = {
-    //   mensaje: '',
-    //   coords: null,
-    //   posicion: false
-    // };
+    this.post = {
+      mensaje: '',
+      coords: '',
+      posicion: false
+    };
 
-    // this.tempImages = [];
+    this.tempImages = [];
 
-    // this.route.navigateByUrl('/main/tabs/tab1');
-
+    this.route.navigateByUrl('/main/tabs/tab1');
   }
 
-  getGeo() {
+  async getGeo() {
 
-    // if ( !this.post.posicion ) {
-    //   this.post.coords = null;
-    //   return;
-    // }
+    if ( !this.post.posicion ) {
+      this.post.coords = '';
+      return;
+    }
 
-    // this.cargandoGeo = true;
+    this.cargandoGeo = true;
 
-    // this.geolocation.getCurrentPosition().then((resp) => {
-    //   // resp.coords.latitude
-    //   // resp.coords.longitude
-    //   this.cargandoGeo = false;
+    const coordinates = await Geolocation.getCurrentPosition().then(( geolocation: any ) => {
+      this.cargandoGeo = false;
+      
+      const coords = `${ geolocation.coords.latitude },${ geolocation.coords.longitude }`;
+      console.log(coords);
+      this.post.coords = coords;
 
-    //   const coords = `${ resp.coords.latitude },${ resp.coords.longitude }`;
-    //   console.log(coords);
-    //   this.post.coords = coords;
-
-
-    //  }).catch((error) => {
-    //    console.log('Error getting location', error);
-    //    this.cargandoGeo = false;
-    //  });
+    }).catch((error) => {
+      console.log('Error getting location', error);
+      this.cargandoGeo = false;
+    });
   }
 
   camara() {
