@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { PostsService } from 'src/app/services/posts.service';
 import { Geolocation } from '@capacitor/geolocation';
+import { Camera, CameraResultType } from '@capacitor/camera';
+
+declare var window: any;
 
 @Component({
   selector: 'app-tab2',
@@ -58,7 +61,7 @@ export class Tab2Page {
     });
   }
 
-  camara() {
+  async camara() {
 
     // const options: CameraOptions = {
     //   quality: 60,
@@ -71,7 +74,33 @@ export class Tab2Page {
 
     // this.procesarImagen( options );
 
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: true,
+      resultType: CameraResultType.Uri
+    });
+
+    var imageUrl = image.webPath;
+    var format = image.format;
+    console.log(imageUrl)
+    console.log(format)
+    console.log("------------------------")
+
+
   }
+
+  takePicture = async () => {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: true,
+      resultType: CameraResultType.Uri
+    });
+
+    var imageUrl = image.webPath;
+  
+    // Can be set to the src of an image now
+    // imageElement.src = imageUrl;
+  };
 
   libreria() {
 

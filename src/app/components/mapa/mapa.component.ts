@@ -34,8 +34,5 @@ export class MapaComponent  implements OnInit {
     const marker = new mapboxgl.Marker()
         .setLngLat( [ lng, lat ] )
         .addTo( map );
-
-
   }
-
 }
