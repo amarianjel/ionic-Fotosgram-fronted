@@ -20,3 +20,9 @@ export interface Usuario {
     email?: string;
     password?: string;
 }
+
+//TODO: Interfaces por que estoy con capacitor
+export interface UserPhoto{
+    filepath: string,
+    webviewPath?: string;
+}
