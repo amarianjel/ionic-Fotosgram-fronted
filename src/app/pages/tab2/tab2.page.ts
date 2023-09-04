@@ -70,42 +70,28 @@ export class Tab2Page {
       source: CameraSource.Camera
     });
 
+    this.procesarImagen( image )
+  }
+
+  async libreria() {
+
+    const image = await Camera.getPhoto({
+      quality: 90,
+      // allowEditing: true,
+      correctOrientation: true,
+      resultType: CameraResultType.Uri,
+      source: CameraSource.Photos
+    });
+
+    this.procesarImagen( image )
+  }
+
+
+  procesarImagen( image: any) {
     //DONE: Toma la foto
     this.tempImages.unshift({
       filepath: "soon...",
       webviewPath: image.webPath
     })
-  }
-
-  libreria() {
-
-    // const options: CameraOptions = {
-    //   quality: 60,
-    //   destinationType: this.camera.DestinationType.FILE_URI,
-    //   encodingType: this.camera.EncodingType.JPEG,
-    //   mediaType: this.camera.MediaType.PICTURE,
-    //   correctOrientation: true,
-    //   sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
-    // };
-
-    // this.procesarImagen( options );
-
-  }
-
-
-  procesarImagen( options: any ) {
-
-    // this.camera.getPicture(options).then( ( imageData ) => {
-    //   // imageData is either a base64 encoded string or a file URI
-    //   // If it's base64 (DATA_URL):
-
-    //    const img = window.Ionic.WebView.convertFileSrc( imageData );
-
-    //   this.postsService.subirImagen( imageData );
-    //   this.tempImages.push( img );
-
-    //  }, (err) => {
-    //   // Handle error
-    //  });
   }
 }
