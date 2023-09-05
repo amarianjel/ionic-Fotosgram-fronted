@@ -22,7 +22,7 @@ export class MapaComponent  implements OnInit {
     const lat = Number(latLng[0]);
     const lng = Number(latLng[1]);
 
-    // FIXME: Problema con el token de acceso, ya que no es mio
+    // BUG: Problema con el token de acceso, ya que no es mio
     mapboxgl.accessToken = 'pk.eyJ1Ijoia2xlcml0aCIsImEiOiJjanJlMWVnMWExdWFkM3lwZzBwMHRtaWU4In0.nH9Y2UtH05u1AhJEq3jHNw';
     const map = new mapboxgl.Map({
       container:  'map',  //this.mapa.nativeElement
