@@ -77,3 +77,4 @@ From there, we just have to replace ion-slides elements with swiper-container an
 ### Librerias
 [Geolocalización](https://ionicframework.com/docs/native/geolocation)
 [Camara](https://ionicframework.com/docs/native/camera)
+[FileSystem](https://capacitorjs.com/docs/apis/filesystem)
