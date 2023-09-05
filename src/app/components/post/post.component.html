@@ -12,30 +12,21 @@
     </ion-label>
   </ion-item>
 
+  <!-- //DONE: Carrusel y mostrar solo la imagen -->
+  <swiper-container pager="true" *ngIf="post.imgs!.length > 1">
 
-  <!-- ngIf imgs.... -->
-  <!-- BUG Problema Get con el ngIF -->
-  <!-- <swiper-container pager="true" *ngIf="post.imgs!.length > 1">
     <swiper-slide *ngFor="let img of post.imgs"
                   class="image-slide"
-                  [style]=" (img | imagen: post.usuario?._id )"></swiper-slide>
-    <swiper-slide *ngIf="post.imgs!.length === 1" [options]="slideSoloOpts"></swiper-slide>
-    <swiper-slide>Slide 3</swiper-slide>
-  </swiper-container> -->
-  <!-- pager="true" *ngIf="post.imgs!.length > 1" -->
-  
-  <!-- <swiper-container >
+                  [style]="( img | imagen: post.usuario?._id! ) | domSanitizer"></swiper-slide>
+  </swiper-container>
+
+  <swiper-container *ngIf="post.imgs!.length === 1">
     <swiper-slide class="image-slide"
-                  [style]="img1 | domSanitizer"></swiper-slide>
-    <swiper-slide class="image-slide"
-                  [style]="img2 | domSanitizer"></swiper-slide>
-    <swiper-slide class="image-slide"
-                  [style]="img3 | domSanitizer"></swiper-slide>
-  </swiper-container> -->
+                  [style]="( post.imgs![0] | imagen: post.usuario?._id! ) | domSanitizer"></swiper-slide>
+  </swiper-container>
 
   <!-- mapa -->
-  <app-mapa [coords]="post.coords" ></app-mapa>
-  <!-- *ngIf="post.coords" -->
+  <app-mapa [coords]="post.coords" *ngIf="post.coords"></app-mapa>
 
   <ion-item lines="none">
     <ion-icon slot="start" name="heart-outline"></ion-icon>
